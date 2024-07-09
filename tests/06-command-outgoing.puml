@@ -1,0 +1,12 @@
+@startuml Communications diagram
+skinparam linestyle ortho
+left to right direction
+
+label " " as external
+rectangle "Thing" as thing
+rectangle "Dependency" as dependency
+
+external -[plain]-> thing: setDependencyBar
+thing -[plain]-> dependency: setBar
+
+@enduml

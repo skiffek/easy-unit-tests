@@ -1,0 +1,10 @@
+@startuml Communications diagram
+skinparam linestyle ortho
+left to right direction
+
+label " " as external
+rectangle "Thing" as thing
+
+external -[dashed]-> thing: getFoo
+
+@enduml
