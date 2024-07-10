@@ -1,10 +1,10 @@
-@startuml Communications diagram
+@startuml communication
 skinparam linestyle ortho
 left to right direction
 
 label " " as external
 rectangle "Thing" as thing
 
-external -[plain]-> thing: setFoo
+external -[dashed]-> thing: getFoo
 
 @enduml

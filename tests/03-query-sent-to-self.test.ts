@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, it, expect } from "bun:test";
 
 // Unit under test
@@ -26,3 +27,10 @@ describe("Thing", () => {
     // Assert return value
   });
 });
+
+/*
+ * RULE 3
+ * -> Do not test private methods.
+ *    Do not make assertions about their result.
+ *    Do not expect to send them.
+ */

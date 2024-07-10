@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, it, expect } from "bun:test";
 
 // Unit under test
@@ -24,3 +25,8 @@ describe("Thing", () => {
     expect(thing.getFoo()).toBe("my-foo");
   });
 });
+
+/*
+ * RULE 2
+ * -> Test incoming command messages by making assertions about direct public side effects.
+ */

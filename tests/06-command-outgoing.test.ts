@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, it, expect, mock } from "bun:test";
 
 interface Dependency {
@@ -39,3 +40,14 @@ describe("Dependency", () => {
     // Assert direct public side effects
   });
 });
+
+/*
+ * RULE 5
+ * -> Expect to send outgoing command messages.
+ */
+
+/*
+ * RULE 6
+ * -> Honor the contract.
+ *    Ensure test doubles stay in sync with the API.
+ */

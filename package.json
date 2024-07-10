@@ -3,6 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
+    "test": "bun test",
     "lint": "eslint",
     "format": "prettier --write ."
   },

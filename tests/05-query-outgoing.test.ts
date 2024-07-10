@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, it, expect } from "bun:test";
 
 interface Dependency {
@@ -19,7 +20,7 @@ class Thing {
 describe("Thing", () => {
   const dependency = <Dependency>{
     getBar: () => "bar",
-    setBar: () => {},
+    setBar: (bar: string) => {},
   };
 
   const thing = new Thing(dependency);
@@ -37,3 +38,10 @@ describe("Dependency", () => {
     // Assert return value
   });
 });
+
+/*
+ * RULE 4
+ * -> Do not test outgoing query messages.
+ *    Do not make assertions about their result.
+ *    Do not expect to send them.
+ */

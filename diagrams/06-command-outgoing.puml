@@ -1,4 +1,4 @@
-@startuml Communications diagram
+@startuml communication
 skinparam linestyle ortho
 left to right direction
 
