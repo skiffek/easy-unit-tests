@@ -4,11 +4,11 @@ import { describe, it, expect } from "bun:test";
 class Thing {
   public constructor(private foo: string = "") {}
 
-  // --> Receives incoming queries
   public getFoo(): string {
     return this.foo;
   }
 
+  // --> Receives incoming command
   public setFoo(foo: string): void {
     this.foo = foo;
   }
@@ -17,10 +17,10 @@ class Thing {
 describe("Thing", () => {
   const thing = new Thing();
 
-  it("getFoo returns the correct value", () => {
+  it("setFoo sets the value", () => {
     thing.setFoo("my-foo");
 
-    // Assert what it sends back
+    // Assert direct public side effects
     expect(thing.getFoo()).toBe("my-foo");
   });
 });
