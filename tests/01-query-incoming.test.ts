@@ -1,16 +1,25 @@
 import { describe, it, expect } from "bun:test";
 
-import { Thing, type Dependency } from "../lib/thing";
+// Unit under test
+class Thing {
+  private foo: string = "default"
+
+  // Receives incoming queries
+  public getFoo(): string {
+    return this.foo;
+  }
+
+  public setFoo(foo: string): void {
+    this.foo = foo;
+  }
+}
 
 describe("Thing", () => {
-  const dependency: Dependency = {
-    getBar: () => "bar",
-    setBar: () => {},
-  };
+  const thing = new Thing();
 
-  it("", () => {
-    const thing = new Thing("my-foo", dependency);
+  it('getFoo returns the correct value', () => {
+    thing.setFoo("my-foo");
 
     expect(thing.getFoo()).toBe("my-foo");
   });
-});
+})
