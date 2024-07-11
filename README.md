@@ -5,6 +5,8 @@ theme: uncover
 class: invert
 ---
 
+<style scoped>p { font-size: 0.5em }</style>
+
 # Easy unit tests
 
 Based upon the talk [The Magic Tricks of Testing](https://www.youtube.com/watch?v=URSWYvyc42M) by Sandi Metz.
@@ -13,15 +15,17 @@ Stephen Meriwether wrote about that exact talk in a [blog post](https://smeriwet
 
 ---
 
-> I hate my tests
+## Message passing in OOP
+
+Object-oriented programming [..] is based on objects. Objects [..] **communicate with each other via messages**. [..] This is often called **method calling**.
 
 ---
 
-## Message passing in OOP
+## Message origins
 
-Object-oriented programming as a programming paradigm is based on objects. Objects are a representation of real-world and objects communicate with each other via messages.
-
-When two or more objects communicate with each other that means that those objects are sending and receiving messages. This is often called _method calling_.
+- Incoming
+- Outgoing
+- Sent to self
 
 ---
 
@@ -29,23 +33,14 @@ When two or more objects communicate with each other that means that those objec
 
 ---
 
-## Message origins
-
-- **Incoming**: The object under test is the receiver, e.g., provides a method to be called.
-- **Outgoing**: The object under test is the sender, e.g., calls a method somewhere else.
-- **Sent to self**: The object under test is sender and receiver. This call is not visible from the outside.
-
----
-
 ## Types of messages
 
-- **Query**: Returns something, changes nothing.
-- **Command**: Returns nothing, changes something.
-- (both at once, think `array.pop()` that returns something _and_ has side effects.)
+- **Query**: <br />Returns something, changes nothing.
+- **Command**: <br />Returns nothing, changes something.
 
 ---
 
-![h:15em](images/matrix.png)
+![h:15em](images/00.png)
 
 ---
 
@@ -97,6 +92,10 @@ Test incoming query messages by making assertions about what they send back.
 
 ---
 
+![h:15em](images/01.png)
+
+---
+
 <!-- header: "Command incoming" -->
 
 ## Command incoming
@@ -142,6 +141,10 @@ describe("Thing", () => {
 ## Rule 2
 
 Test incoming command messages by making assertions about direct public side effects.
+
+---
+
+![h:15em](images/02.png)
 
 ---
 
@@ -252,6 +255,10 @@ Do not test private methods. Do not make assertions about their result. Do not e
 
 ---
 
+![h:15em](images/03-04.png)
+
+---
+
 > [!IMPORTANT]
 > Break rules if it saves money during development.
 
@@ -316,6 +323,10 @@ describe("Dependency", () => {
 ## Rule 4
 
 Do not test outgoing query messages. Do not make assertions about their result. Do not expect to send them.
+
+---
+
+![h:15em](images/05.png)
 
 ---
 
@@ -394,11 +405,11 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 
 ---
 
-<!-- header: "" -->
-
-![h:15em](images/rules-of-testing.png)
+![h:15em](images/06.png)
 
 ---
+
+<!-- header: "" -->
 
 ## Rules
 
@@ -439,5 +450,3 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 - Practice the tricks.
 
 ---
-
-> I love my tests
