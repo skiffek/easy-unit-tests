@@ -36,7 +36,7 @@ Objects [..] **communicate with each other via messages**. [..] This is often ca
 
 ---
 
-![h:15em](./images/object-under-test.png)
+![h:15em](../images/object-under-test.png)
 
 ---
 
@@ -47,7 +47,7 @@ Objects [..] **communicate with each other via messages**. [..] This is often ca
 
 ---
 
-![h:15em](./images/00.png)
+![h:15em](../images/00.png)
 
 ---
 
@@ -55,18 +55,18 @@ Objects [..] **communicate with each other via messages**. [..] This is often ca
 
 ## Query incoming
 
-!!!include(./diagrams/01-query-incoming.puml)!!!
+!!!include(../diagrams/01-query-incoming.puml)!!!
 
 ---
 
 ```typescript
-!!!include(./src/01-query-incoming.ts)!!!
+!!!include(../src/01-query-incoming.ts)!!!
 ```
 
 ---
 
 ```typescript
-!!!include(./tests/01-query-incoming.test.ts)!!!
+!!!include(../tests/01-query-incoming.test.ts)!!!
 ```
 
 ---
@@ -77,7 +77,7 @@ Test incoming query messages by making assertions about what they send back.
 
 ---
 
-![h:15em](./images/01.png)
+![h:15em](../images/01.png)
 
 ---
 
@@ -85,18 +85,18 @@ Test incoming query messages by making assertions about what they send back.
 
 ## Command incoming
 
-!!!include(./diagrams/02-command-incoming.puml)!!!
+!!!include(../diagrams/02-command-incoming.puml)!!!
 
 ---
 
 ```typescript
-!!!include(./src/02-command-incoming.ts)!!!
+!!!include(../src/02-command-incoming.ts)!!!
 ```
 
 ---
 
 ```typescript
-!!!include(./tests/02-command-incoming.test.ts)!!!
+!!!include(../tests/02-command-incoming.test.ts)!!!
 ```
 
 ---
@@ -107,7 +107,7 @@ Test incoming command messages by making assertions about direct public side eff
 
 ---
 
-![h:15em](./images/02.png)
+![h:15em](../images/02.png)
 
 ---
 
@@ -119,18 +119,18 @@ Test incoming command messages by making assertions about direct public side eff
 
 ## Query sent to self
 
-!!!include(./diagrams/03-query-sent-to-self.puml)!!!
+!!!include(../diagrams/03-query-sent-to-self.puml)!!!
 
 ---
 
 ```typescript
-!!!include(./src/03-query-sent-to-self.ts)!!!
+!!!include(../src/03-query-sent-to-self.ts)!!!
 ```
 
 ---
 
 ```typescript
-!!!include(./tests/03-query-sent-to-self.test.ts)!!!
+!!!include(../tests/03-query-sent-to-self.test.ts)!!!
 ```
 
 ---
@@ -143,18 +143,18 @@ Test incoming command messages by making assertions about direct public side eff
 
 ## Command sent to self
 
-!!!include(./diagrams/04-command-sent-to-self.puml)!!!
+!!!include(../diagrams/04-command-sent-to-self.puml)!!!
 
 ---
 
 ```typescript
-!!!include(./src/04-command-sent-to-self.ts)!!!
+!!!include(../src/04-command-sent-to-self.ts)!!!
 ```
 
 ---
 
 ```typescript
-!!!include(./tests/04-command-sent-to-self.test.ts)!!!
+!!!include(../tests/04-command-sent-to-self.test.ts)!!!
 ```
 
 ---
@@ -167,7 +167,7 @@ Do not test private methods. Do not make assertions about their result. Do not e
 
 ---
 
-![h:15em](./images/03-04.png)
+![h:15em](../images/03-04.png)
 
 ---
 
@@ -179,18 +179,18 @@ Do not test private methods. Do not make assertions about their result. Do not e
 
 ## Query outgoing
 
-!!!include(./diagrams/05-query-outgoing.puml)!!!
+!!!include(../diagrams/05-query-outgoing.puml)!!!
 
 ---
 
 ```typescript
-!!!include(./src/05-query-outgoing.ts)!!!
+!!!include(../src/05-query-outgoing.ts)!!!
 ```
 
 ---
 
 ```typescript
-!!!include(./tests/05-query-outgoing.test.ts)!!!
+!!!include(../tests/05-query-outgoing.test.ts)!!!
 ```
 
 ---
@@ -201,7 +201,7 @@ Do not test outgoing query messages. Do not make assertions about their result. 
 
 ---
 
-![h:15em](./images/05.png)
+![h:15em](../images/05.png)
 
 ---
 
@@ -213,18 +213,18 @@ Do not test outgoing query messages. Do not make assertions about their result. 
 
 ## Command outgoing
 
-!!!include(./diagrams/06-command-outgoing.puml)!!!
+!!!include(../diagrams/06-command-outgoing.puml)!!!
 
 ---
 
 ```typescript
-!!!include(./src/06-command-outgoing.ts)!!!
+!!!include(../src/06-command-outgoing.ts)!!!
 ```
 
 ---
 
 ```typescript
-!!!include(./tests/06-command-outgoing.test.ts)!!!
+!!!include(../tests/06-command-outgoing.test.ts)!!!
 ```
 
 ---
@@ -241,7 +241,7 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 
 ---
 
-![h:15em](./images/06.png)
+![h:15em](../images/06.png)
 
 ---
 
@@ -275,11 +275,11 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 
 ---
 
-![h:15em](./images/06.png)
+![h:15em](../images/06.png)
 
 ---
 
-![h:10em](./images/object-under-test.png)
+![h:10em](../images/object-under-test.png)
 
 Given this know-how about testing objects, how would you test a component, a module, the whole system?
 
