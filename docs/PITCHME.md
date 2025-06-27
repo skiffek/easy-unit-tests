@@ -36,7 +36,7 @@ Objects [..] **communicate with each other via messages**. [..] This is often ca
 
 ---
 
-![h:15em](../images/object-under-test.png)
+![h:12em](../images/object-under-test.png)
 
 ---
 
@@ -47,7 +47,7 @@ Objects [..] **communicate with each other via messages**. [..] This is often ca
 
 ---
 
-![h:15em](../images/00.png)
+![h:12em](../images/00.png)
 
 ---
 
@@ -77,7 +77,7 @@ Test incoming query messages by making assertions about what they send back.
 
 ---
 
-![h:15em](../images/01.png)
+![h:12em](../images/01.png)
 
 ---
 
@@ -107,7 +107,7 @@ Test incoming command messages by making assertions about direct public side eff
 
 ---
 
-![h:15em](../images/02.png)
+![h:12em](../images/02.png)
 
 ---
 
@@ -167,7 +167,7 @@ Do not test private methods. Do not make assertions about their result. Do not e
 
 ---
 
-![h:15em](../images/03-04.png)
+![h:12em](../images/03-04.png)
 
 ---
 
@@ -201,7 +201,7 @@ Do not test outgoing query messages. Do not make assertions about their result. 
 
 ---
 
-![h:15em](../images/05.png)
+![h:12em](../images/05.png)
 
 ---
 
@@ -241,7 +241,7 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 
 ---
 
-![h:15em](../images/06.png)
+![h:12em](../images/06.png)
 
 ---
 
@@ -275,7 +275,7 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 
 ---
 
-![h:15em](../images/06.png)
+![h:12em](../images/06.png)
 
 ---
 
