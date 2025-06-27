@@ -2,10 +2,10 @@
 skinparam linestyle ortho
 left to right direction
 
-label " " as external
-rectangle "Thing" as thing
+component "Unit under test" {
+  rectangle "Thing" as thing
+}
 
-external -[dashed]-> thing: getBazAsString
 thing -[dashed]-> thing: getBaz
 
 @enduml

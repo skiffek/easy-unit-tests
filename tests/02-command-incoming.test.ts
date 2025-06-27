@@ -1,32 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { describe, it, expect } from "bun:test";
+import { describe, it, mock } from "node:test";
+import * as assert from "node:assert/strict";
 
-// Unit under test
-class Thing {
-  public constructor(private foo: string = "") {}
+import { Thing } from "../src/lib/thing.ts";
 
-  public getFoo(): string {
-    return this.foo;
-  }
-
-  // --> Receives incoming command
-  public setFoo(foo: string): void {
-    this.foo = foo;
-  }
-}
-
-describe("Thing", () => {
+describe("Command Incoming", () => {
   const thing = new Thing();
 
   it("setFoo sets the value", () => {
-    thing.setFoo("my-foo");
+    // Test incoming command messages...
+    thing.setFoo("nups");
 
-    // Assert direct public side effects
-    expect(thing.getFoo()).toBe("my-foo");
+    // ... by making assertions about direct public side effects.
+    assert.equal(thing.getFoo(), "nups");
   });
 });
-
-/*
- * RULE 2
- * -> Test incoming command messages by making assertions about direct public side effects.
- */

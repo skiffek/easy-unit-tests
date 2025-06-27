@@ -1,36 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { describe, it, expect } from "bun:test";
+import { describe, it, mock } from "node:test";
+import * as assert from "node:assert/strict";
 
-// Unit under test
-class Thing {
-  public constructor(private baz: string[] = []) {}
+import { Thing } from "../src/lib/thing.ts";
 
-  // Receives incoming query AND
-  // --> Sends query to self
-  public getBazAsString(): string {
-    return this.getBaz().join("");
-  }
-
-  // --> Receives sent-to-self query
-  private getBaz(): string[] {
-    return this.baz;
-  }
-}
-
-describe("Thing", () => {
+describe("Query sent to self", () => {
   const thing = new Thing();
 
-  // Enough to assert the result of getBazAsString,
-  // DO NOT test getBaz directly
+  // Do not test private methods.
+  // Do not make assertions about their result.
+  // Do not expect to send them.
+  it.skip("getBaz returns the correct value", () => {});
+  it.skip("getSquark calls getBaz", () => {});
 
-  it("getBazAsString returns the correct value", () => {
-    // Assert return value
+  it("getSquark returns the reversed baz", () => {
+    // --> see "Query incoming"
   });
 });
-
-/*
- * RULE 3
- * -> Do not test private methods.
- *    Do not make assertions about their result.
- *    Do not expect to send them.
- */

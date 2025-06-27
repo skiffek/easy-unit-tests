@@ -3,13 +3,18 @@ marp: true
 paginate: true
 theme: uncover
 class: invert
+style: |
+  code { line-height: 130%; }
 ---
 
-<style scoped>p { font-size: 0.5em }</style>
+<style scoped>
+h1 { font-size: 3.5em; }
+p { font-size: 0.4em }
+</style>
 
 # Easy unit tests
 
-Based upon the talk [The Magic Tricks of Testing](https://www.youtube.com/watch?v=URSWYvyc42M) by Sandi Metz.
+Based upon the talk [The Magic Tricks of Testing](https://www.youtube.com/watch?v=URSWYvyc42M) ([slide deck](https://speakerdeck.com/spreeconf/the-magic-tricks-of-testing-sandi-metz)) by Sandi Metz .
 
 Stephen Meriwether wrote about that exact talk in a [blog post](https://smeriwether.medium.com/the-magic-tricks-of-unit-testing-28ce0b300cee).
 
@@ -17,7 +22,9 @@ Stephen Meriwether wrote about that exact talk in a [blog post](https://smeriwet
 
 ## Message passing in OOP
 
-Object-oriented programming [..] is based on objects. Objects [..] **communicate with each other via messages**. [..] This is often called **method calling**.
+Object-oriented programming [..] is based on objects.
+
+Objects [..] **communicate with each other via messages**. [..] This is often called **method calling**.
 
 ---
 
@@ -29,18 +36,18 @@ Object-oriented programming [..] is based on objects. Objects [..] **communicate
 
 ---
 
-![h:15em](images/object-under-test.png)
+![h:15em](./images/object-under-test.png)
 
 ---
 
 ## Types of messages
 
 - **Query**: <br />Returns something, changes nothing.
-- **Command**: <br />Returns nothing, changes something.
+- **Command**: <br />Returns nothing, changes something ("side effect").
 
 ---
 
-![h:15em](images/00.png)
+![h:15em](./images/00.png)
 
 ---
 
@@ -48,40 +55,18 @@ Object-oriented programming [..] is based on objects. Objects [..] **communicate
 
 ## Query incoming
 
----
-
-![h:3em](diagrams/01-query-incoming.svg)
+!!!include(./diagrams/01-query-incoming.puml)!!!
 
 ---
 
 ```typescript
-class Thing {
-  public constructor(private foo: string = "") {}
-
-  // --> Receives incoming queries
-  public getFoo(): string {
-    return this.foo;
-  }
-
-  public setFoo(foo: string): void {
-    this.foo = foo;
-  }
-}
+!!!include(./src/01-query-incoming.ts)!!!
 ```
 
 ---
 
 ```typescript
-describe("Thing", () => {
-  const thing = new Thing();
-
-  it("getFoo returns the correct value", () => {
-    thing.setFoo("my-foo");
-
-    // Assert what it sends back
-    expect(thing.getFoo()).toBe("my-foo");
-  });
-});
+!!!include(./tests/01-query-incoming.test.ts)!!!
 ```
 
 ---
@@ -92,7 +77,7 @@ Test incoming query messages by making assertions about what they send back.
 
 ---
 
-![h:15em](images/01.png)
+![h:15em](./images/01.png)
 
 ---
 
@@ -100,40 +85,18 @@ Test incoming query messages by making assertions about what they send back.
 
 ## Command incoming
 
----
-
-![h:3em](diagrams/02-command-incoming.svg)
+!!!include(./diagrams/02-command-incoming.puml)!!!
 
 ---
 
 ```typescript
-class Thing {
-  public constructor(private foo: string = "") {}
-
-  public getFoo(): string {
-    return this.foo;
-  }
-
-  // --> Receives incoming command
-  public setFoo(foo: string): void {
-    this.foo = foo;
-  }
-}
+!!!include(./src/02-command-incoming.ts)!!!
 ```
 
 ---
 
 ```typescript
-describe("Thing", () => {
-  const thing = new Thing();
-
-  it("setFoo sets the value", () => {
-    thing.setFoo("my-foo");
-
-    // Assert direct public side effects
-    expect(thing.getFoo()).toBe("my-foo");
-  });
-});
+!!!include(./tests/02-command-incoming.test.ts)!!!
 ```
 
 ---
@@ -144,11 +107,10 @@ Test incoming command messages by making assertions about direct public side eff
 
 ---
 
-![h:15em](images/02.png)
+![h:15em](./images/02.png)
 
 ---
 
-> [!IMPORTANT]
 > Receiver of incoming message has sole responsibilty for asserting the result and direct public side effects.
 
 ---
@@ -157,47 +119,22 @@ Test incoming command messages by making assertions about direct public side eff
 
 ## Query sent to self
 
----
-
-![h:3em](diagrams/03-query-sent-to-self.svg)
+!!!include(./diagrams/03-query-sent-to-self.puml)!!!
 
 ---
 
 ```typescript
-class Thing {
-  public constructor(private baz: string[] = []) {}
-
-  // Receives incoming query AND
-  // --> Sends query to self
-  public getBazAsString(): string {
-    return this.getBaz().join("");
-  }
-
-  // --> Receives sent-to-self query
-  private getBaz(): string[] {
-    return this.baz;
-  }
-}
+!!!include(./src/03-query-sent-to-self.ts)!!!
 ```
 
 ---
 
 ```typescript
-describe("Thing", () => {
-  const thing = new Thing();
-
-  // Enough to assert the result of getBazAsString,
-  // DO NOT test getBaz directly
-
-  it("getBazAsString returns the correct value", () => {
-    // Assert return value
-  });
-});
+!!!include(./tests/03-query-sent-to-self.test.ts)!!!
 ```
 
 ---
 
-> [!IMPORTANT]  
 > Test the interface, not the implementation.
 
 ---
@@ -206,43 +143,18 @@ describe("Thing", () => {
 
 ## Command sent to self
 
----
-
-![h:3em](diagrams/04-command-sent-to-self.svg)
+!!!include(./diagrams/04-command-sent-to-self.puml)!!!
 
 ---
 
 ```typescript
-class Thing {
-  public constructor(private baz: string[] = []) {}
-
-  // Receives incoming command AND
-  // --> Sends command to self
-  public setBazFromString(baz: string): void {
-    this.setBaz(baz.split(""));
-  }
-
-  // --> Receives sent-to-self command
-  private setBaz(baz: string[]): void {
-    this.baz = baz;
-  }
-}
+!!!include(./src/04-command-sent-to-self.ts)!!!
 ```
 
 ---
 
 ```typescript
-describe("Thing", () => {
-  const thing = new Thing();
-
-  // Enough to assert the direct public side effects
-  // of setBazFromString,
-  // DO NOT test setBaz directly
-
-  it("setBazFromString sets the value", () => {
-    // Assert direct public side effects
-  });
-});
+!!!include(./tests/04-command-sent-to-self.test.ts)!!!
 ```
 
 ---
@@ -255,11 +167,10 @@ Do not test private methods. Do not make assertions about their result. Do not e
 
 ---
 
-![h:15em](images/03-04.png)
+![h:15em](./images/03-04.png)
 
 ---
 
-> [!IMPORTANT]
 > Break rules if it saves money during development.
 
 ---
@@ -268,54 +179,18 @@ Do not test private methods. Do not make assertions about their result. Do not e
 
 ## Query outgoing
 
----
-
-![h:3em](diagrams/05-query-outgoing.svg)
+!!!include(./diagrams/05-query-outgoing.puml)!!!
 
 ---
 
 ```typescript
-interface Dependency {
-  getBar(): string;
-  setBar(bar: string): void;
-}
-
-// Unit under test
-class Thing {
-  public constructor(private readonly dependency: Dependency) {}
-
-  // Receives incoming query AND
-  // --> Sends outgoing query
-  public getDependencyBar(): string {
-    return this.dependency.getBar();
-  }
-}
+!!!include(./src/05-query-outgoing.ts)!!!
 ```
 
 ---
 
 ```typescript
-describe("Thing", () => {
-  const dependency = <Dependency>{
-    getBar: () => "bar",
-    setBar: (bar: string) => {},
-  };
-
-  const thing = new Thing(dependency);
-
-  // Enough if dependency is tested,
-  // DO NOT test the outgoing query directly.
-
-  it("getDependencyBar returns the correct value", () => {
-    // ...
-  });
-});
-
-describe("Dependency", () => {
-  it("getBar returns the correct value", () => {
-    // Assert return value
-  });
-});
+!!!include(./tests/05-query-outgoing.test.ts)!!!
 ```
 
 ---
@@ -326,11 +201,10 @@ Do not test outgoing query messages. Do not make assertions about their result. 
 
 ---
 
-![h:15em](images/05.png)
+![h:15em](./images/05.png)
 
 ---
 
-> [!IMPORTANT]
 > If a message has no visible side effects, the sender should not test it.
 
 ---
@@ -339,56 +213,18 @@ Do not test outgoing query messages. Do not make assertions about their result. 
 
 ## Command outgoing
 
----
-
-![h:3em](diagrams/05-query-outgoing.svg)
+!!!include(./diagrams/06-command-outgoing.puml)!!!
 
 ---
 
 ```typescript
-interface Dependency {
-  getBar(): string;
-  setBar(bar: string): void;
-}
-
-// Unit under test
-class Thing {
-  public constructor(private readonly dependency: Dependency) {}
-
-  // Receives incoming command AND
-  // --> Sends outgoing command
-  public setDependencyBar(bar: string): void {
-    this.dependency.setBar(bar);
-  }
-}
+!!!include(./src/06-command-outgoing.ts)!!!
 ```
 
 ---
 
 ```typescript
-describe("Thing", () => {
-  const setBarMock = mock((bar: string) => {});
-  const dependency = <Dependency>{
-    getBar: () => "bar",
-    setBar: setBarMock,
-  };
-
-  const thing = new Thing(dependency);
-
-  it("setDependencyBar sends the outgoing command", () => {
-    thing.setDependencyBar("new bar");
-
-    expect(setBarMock).toHaveBeenCalledWith("new bar");
-  });
-
-  // setDependencyBar has no DIRECT public side effects.
-});
-
-describe("Dependency", () => {
-  it("setBar sets the value", () => {
-    // Assert direct public side effects
-  });
-});
+!!!include(./tests/06-command-outgoing.test.ts)!!!
 ```
 
 ---
@@ -405,7 +241,7 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 
 ---
 
-![h:15em](images/06.png)
+![h:15em](./images/06.png)
 
 ---
 
@@ -439,14 +275,14 @@ Honor the contract. Ensure test doubles stay in sync with the API.
 
 ---
 
-## Other take-aways
-
-- Be a minimalist.
-- Use good judgement.
-- Test everything once.
-- Test the interface.
-- Trust collaborators.
-- Insist on simplicity.
-- Practice the tricks.
+![h:15em](./images/06.png)
 
 ---
+
+![h:10em](./images/object-under-test.png)
+
+Given this know-how about testing objects, how would you test a component, a module, the whole system?
+
+---
+
+https://github.com/skiffek/easy-unit-tests
